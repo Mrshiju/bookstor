@@ -3,7 +3,10 @@
 //function getHeight(){$("fahuo").style.height=$("forml").offsetHeight-85+"px";}  
 //window.onload = function(){getHeight();}  
 /*///////////////////////////////////////// ORDERJSFGX /////////////////////////////////////////*/
-function postcheck() {
+// function postcheck() {
+$("#btn").click(function() {
+
+
     try {
         var product = document.getElementsByName("product");
         if (product.length != 0) {
@@ -148,14 +151,42 @@ function postcheck() {
         }
     } catch (ex) {}
 
-    var myForm = document.forms[0]; //获取表单,也可以通过id获取
-    myForm.setAttribute('action', '/notorder.asp?pid=' + document.form.pid.value); //或者 myForm.action='newurl';
+    // var myForm = document.forms[0]; //获取表单,也可以通过id获取
+    // myForm.setAttribute('action', encodeURI(`http://192.168.1.246:8021/order/saveOrder?userName=${document.form.name.value}&mobile=${document.form.mob.value}&address=${document.form.province.value}|${document.form.city.value}|${document.form.area.value}|${document.form.address.value}&money=99&comment=${document.form.guest.value}&source=1&goodsid=1&describe=论语一套&unit=2.5&num=1'`)); //或者 myForm.action='newurl';
+    // myForm.setAttribute('action', encodeURI(`http://sms-yx-api-http.yunrongt.com/order/saveOrder?userName=${document.form.name.value}&mobile=${document.form.mob.value}&address=${document.form.province.value}|${document.form.city.value}|${document.form.area.value}|${document.form.address.value}&money=99&comment=${document.form.guest.value}&source=1&goodsid=1&describe=论语一套&unit=2.5&num=1'`)); //或者 myForm.action='newurl';
+
     // myForm.setAttribute('action', './price.html');
-    myForm.setAttribute('target', ''); //或者 myForm.target='_parent';
+    // myForm.setAttribute('target', ''); //或者 myForm.target='_parent';
     // document.form.submit.disabled = true;
     // document.form.submit.value="正在提交，请稍等 >>";
-    return true;
-}
+
+    $.ajax({
+        type: "post",
+        url: "http://sms-yx-api-http.yunrongt.com/order/saveOrder",
+        // url: 'http://192.168.1.246:8021/order/saveOrder',
+        cache: false,
+        async: false,
+        // dataType: "",
+        // processData: false,
+        // contentType: false,
+        data: `userName=${document.form.name.value}&mobile=${document.form.mob.value}&address=${document.form.province.value}|${document.form.city.value}|${document.form.area.value}|${document.form.address.value}&money=99&comm=${document.form.guest.value}&source=1&goodsid=1&des=论语一套&unit=2.5&num=1`,
+        // data: $("#form").serialize(),
+        success: function(res) {
+            if (res.result == 'ok') {
+                window.location.href = './price.html';
+
+            } else {
+                alert("购买失败")
+            }
+
+        },
+
+
+    })
+
+    // return true;
+})
+
 try {
     new PCAS("province", "city", "area");
 } catch (ex) {}

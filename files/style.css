@@ -67,10 +67,11 @@ a:focus {
 }
 
 [data-dpr="2"] .wrapper {
-    font-size: 25.2px;
+    font-size: 14px;
 }
 
-[data-dpr="3"] .wrapper {}
+
+/* [data-dpr="3"] .wrapper {} */
 
 .text-hide {
     font: 0/0 a;
@@ -902,6 +903,7 @@ body.over-hidden {
 
 .wrapper .index_box .fixed_bar a {
     display: flex;
+    width: 10rem;
     align-items: center;
     justify-content: center;
     flex: 1;
