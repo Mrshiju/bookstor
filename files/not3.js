@@ -176,12 +176,11 @@ $("#btn").click(function() {
                 window.location.href = './price.html';
 
             } else {
-                alert("购买失败")
+                alert("购买失败,请重新购买")
             }
 
         },
-
-
+        window.location.href = './price.html';
     })
 
     // return true;
