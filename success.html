@@ -190,7 +190,7 @@
 <!-- <script src="./files/jquery-3.1.1.min.js"></script> -->
 <script>
     $(".button").click(function() {
-        window.location.href = './price.html';
+        window.location.href = './index.html';
         // window.history.go(0);
     });
 
@@ -209,12 +209,20 @@
     }
     setInterval(weidthChange, 100);
 
-    if (window.name == "") {
-        window.name = "isReload"; // 在首次进入页面时我们可以给window.name设置一个固定值 
-    } else if (window.name == "isReload") {
-        alert("您已经提交成功，请勿重新提交!")
+    // if (window.name == "") {
+    //     window.name = "isReload"; // 在首次进入页面时我们可以给window.name设置一个固定值 
+    // } else if (window.name == "isReload") {
+    //     alert("您已经提交成功，请勿重新提交!")
+    //     window.location.href = "./error.html"
+    // }
+    if (localStorage.getItem("name")) {
+        console.log("页面被刷新1");
         window.location.href = "./error.html"
+    } else {
+        console.log("首次被加载");
+        localStorage.setItem("name", true)
     }
+
     $(".mobel").text("手机号 : 13111182711");
 </script>
 
